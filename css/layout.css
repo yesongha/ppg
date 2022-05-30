@@ -1,0 +1,473 @@
+@charset 'utf-8';
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Orbitron&family=Alegreya+Sans+SC&display=swap');
+
+/* reset */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+html {
+	font-size: 16px;
+	line-height: 1.5;
+	font-family: 'Pretendard', sans-serif;
+}
+
+::-webkit-scrollbar {
+	width: 0px;
+}
+
+/* 스크롤바 막대 설정*/
+::-webkit-scrollbar-thumb {
+	background-color: #fff;
+	border-radius: 1px;
+}
+
+/* 스크롤바 트랙*/
+::-webkit-scrollbar-track {
+	background-color: #efefef;
+}
+
+body {
+	background-color: #fff;
+}
+
+body * {
+	box-sizing: border-box;
+}
+
+.clear::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+/* 헤더 */
+header {
+	width: 400px;
+	height: 100%;
+	background-image: linear-gradient(45deg, rgb(170, 175, 226), rgb(188, 170, 255));
+	position: fixed;
+	top: 0;
+	left: 0;
+	transition: 0.6s;
+}
+
+header h1 {
+	font-size: 50px;
+	line-height: 1;
+	font-family: 'Pretendard';
+	color: #fff;
+	letter-spacing: 1px;
+	position: absolute;
+	left: 50px;
+	top: 50%;
+	transform: translateY(-150%);
+}
+
+/* 선(LINE) 효과 */
+header h1::after {
+	content: '';
+	display: block;
+	width: 200px;
+	height: 2px;
+	background-image: linear-gradient(to right, #fff, transparent);
+	margin-top: 20px;
+}
+
+header h1::before {
+	content: 'Portfolio Gallery';
+	display: block;
+	font-size: 20px;
+	line-height: 1;
+	font-family: 'Pretendard';
+	color: #fff;
+	letter-spacing: 4px;
+	font-variant: small-caps;
+	position: absolute;
+	left: 0;
+	top: 130px;
+	opacity: 0.8;
+}
+
+/* SNS */
+header ul {
+	position: absolute;
+	left: 40px;
+	bottom: 100px;
+}
+
+header ul li {
+	float: left;
+	margin-right: 10px;
+}
+
+header ul li a {
+	font-size: 20px;
+	color: #fff;
+}
+
+header ul li a span {
+	display: inline-block;
+	font-weight: bold;
+	opacity: 0.7;
+	transform: scale(0.7) translateX(-10px);
+}
+
+/* COPYRIGHT */
+header .copy {
+	position: absolute;
+	bottom: 40px;
+	left: 40px;
+	color: #fff;
+	font-size: 14px;
+}
+
+/* 메인 */
+main {
+	margin-left: 400px;
+	padding: 20px;
+}
+
+/* 필터 */
+main ul {
+	width: 100%;
+	margin-bottom: 10px;
+	margin-right: 20px;
+}
+
+main ul li {
+	float: right;
+	margin-right: 20px;
+	width: 100px;
+	height: 26px;
+}
+
+main ul li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 2;
+	font-family: 'Pretendard', sans-serif;
+	color: #888;
+	letter-spacing: 1px;
+	text-align: center;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+	background-color: #fff;
+}
+
+main ul li.on a {
+	background-image: linear-gradient(45deg, rgb(170, 175, 226), rgb(188, 170, 255));
+	color: #fff;
+}
+
+/* 콘텐츠 */
+main .contents {
+	width: 100%;
+}
+
+main .contents .con {
+	width: 20%;
+	float: left;
+	padding: 12px;
+	cursor: pointer;
+}
+
+main .contents .con div {
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	border-radius: 4px;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+	padding: 14px;
+	transition: all 0.4s;
+}
+
+main .contents .con:hover div {
+	/* background-color: rgba(255, 0, 128, 0.2); */
+	background-image: linear-gradient(0deg, rgb(170, 175, 226), transparent 90%);
+}
+
+main .contents .con div img {
+	width: 100%;
+}
+
+main .contents .con div h2 {
+	margin-top: 20px;
+	font-family: 'Pretendard', sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	color: #444;
+	margin-bottom: 5px;
+}
+
+main .contents .con div p {
+	font-size: 12px;
+	line-height: 1.2;
+	color: #777;
+	margin-bottom: 15px;
+}
+
+main .contents .con div a {
+	border: 1px solid #555;
+	padding: 5px;
+	font-size: 0.8rem;
+	display: none;
+}
+
+/* 모달레이어 */
+.modal {
+	width: calc(100% - 400px);
+	height: 100vh;
+	background-color: #222;
+	position: fixed;
+	top: 0;
+	right: -100%;
+	/*왼쪽 화면 바깥에 배치*/
+	opacity: 0;
+	/*투명도 0으로 비활성화*/
+	z-index: 20;
+	/*h1과 nav는 .modal 위쪽에 배치*/
+	padding: 10vh 5vw;
+	display: flex;
+	justify-content: space-between;
+	/*자식 요소인 .txt와 figure를 좌우 양 끝에 배치 */
+	transition: 1s;
+	/*전환효과 설정*/
+}
+
+.modal.on {
+	/*클래스 on 이 붙으면*/
+	opacity: 1;
+	right: 0;
+	/*왼쪽 바깥에서 화면 안쪽으로 이동하도록 설정*/
+}
+
+.modal .txt {
+	width: 25%;
+	height: 100%;
+	font-family: 'Pretendard', sans-serif;
+}
+
+.modal .txt h1 {
+	font-size: 2vw;
+	line-height: 1;
+	color: #eee;
+	margin-bottom: 40px;
+}
+
+.modal .txt p {
+	color: #ddd;
+	margin-bottom: 60px;
+}
+
+.modal .txt span {
+	cursor: pointer;
+	font-size: 4vmin;
+	font-weight: normal;
+	color: #fff;
+	position: absolute;
+	top: 2vw;
+	left: 2vw;
+}
+
+.modal .txt a {
+	border: 1px solid #fff;
+	color: #fff;
+	width: 100px;
+	height: 40px;
+	display: block;
+	text-align: center;
+	line-height: 38px;
+	margin-top: 100px;
+}
+
+.modal .txt a:hover {
+	border-width: 3px;
+	line-height: 34px;
+}
+
+.modal figure {
+	width: 72%;
+	height: 100%;
+	overflow: auto;
+}
+
+.modal figure img {
+	width: 100%;
+	/* max-width: 100%; */
+	/* height: 100%; */
+	object-fit: cover;
+}
+
+
+@media screen and (max-width: 1599px) {
+	header {
+		width: 350px;
+	}
+
+	header ul li {
+		width: calc(50% - 10px);
+	}
+
+	main {
+		margin-left: 350px;
+	}
+
+	main .contents .con {
+		width: 25%;
+	}
+
+	.modal {
+		width: calc(100% - 350px);
+	}
+}
+
+@media screen and (max-width: 1199px) {
+	header {
+		width: 100%;
+		height: 80px;
+		position: relative;
+	}
+
+	header h1 {
+		font-family: 'Pretendard', sans-serif;
+		font-size: 24px;
+		font-weight: bold;
+		line-height: 1;
+		transform: translateY(-50%);
+	}
+
+	header h1::before,
+	header h1::after {
+		display: none;
+	}
+
+	header ul {
+		left: 83%;
+		bottom: 25px;
+	}
+
+	header ul li {
+		width: auto;
+		margin-right: 20px;
+	}
+
+	header ul li a {
+		font-size: 20px;
+	}
+
+	header ul li a span {
+		display: none;
+	}
+
+	header .copy {
+		display: none;
+	}
+
+	main {
+		width: 100%;
+		margin-left: 0;
+	}
+
+	main .contents .con {
+		width: 25%;
+	}
+
+	.modal {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 899px) {
+	header ul {
+		left: 80%;
+	}
+
+	main .contents .con {
+		width: 33.333%;
+	}
+}
+
+@media screen and (max-width: 679px) {
+	header ul {
+		left: 70%;
+	}
+
+	main .contents .con {
+		width: 50%;
+	}
+}
+
+@media screen and (max-width: 539px) {
+	header ul {
+		display: none;
+	}
+
+	main ul {
+		margin-right: 0;
+		padding: 0 13px;
+	}
+
+	main ul li {
+		margin-right: 2%;
+		width: 32%;
+	}
+
+	main ul li:nth-of-type(1) {
+		margin-right: 0%;
+	}
+
+	main .contents .con {
+		width: 100%;
+	}
+
+	.modal {
+		flex-direction: column;
+		padding: 5vh;
+	}
+	.modal .txt {
+		width: 100%;
+		height: auto;
+	}
+
+	.modal .txt h1 {
+		font-size: 5vw;
+		margin-bottom: 20px;
+	}
+
+	.modal .txt p {
+		font-size: 20px;
+		margin-bottom: 20px;
+	}
+
+	.modal .txt span {
+		position: absolute;
+		top: 20px;
+		left: auto;
+		right: 20px;
+		font-size: 2rem;
+	}
+
+	.modal .txt a {
+		margin-top: 0;
+		margin-bottom: 20px;
+	}
+
+	.modal figure {
+		width: 100%;
+	}
+}
